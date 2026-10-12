@@ -1,10 +1,18 @@
-﻿import type { Metadata } from 'next';
+import type { Metadata } from 'next';
+import { Hind_Siliguri } from 'next/font/google';
 import './globals.css';
 import { AuthProvider } from '@/lib/auth-context';
 import { Toaster } from 'react-hot-toast';
 import Navbar from '@/components/navbar/Navbar';
 import Footer from '@/components/ui/Footer';
 import { getCategories, getAllProducts } from '@/lib/api';
+
+const hindSiliguri = Hind_Siliguri({
+  weight: ['400', '500', '600', '700'],
+  subsets: ['bengali', 'latin'],
+  display: 'swap',
+  variable: '--font-hind-siliguri',
+});
 
 export const metadata: Metadata = {
   title: 'বাজার দর — নিত্যপ্রয়োজনীয় পণ্যের সঠিক বাজার দর ট্র্যাকিং',
@@ -23,30 +31,30 @@ export default async function RootLayout({
   ]);
 
   return (
-    <html lang="bn" className="scroll-smooth">
-      <body className="min-h-screen flex flex-col bg-slate-50 text-slate-900 antialiased selection:bg-emerald-500 selection:text-white">
+    <html lang="bn" className={`scroll-smooth ${hindSiliguri.variable}`}>
+      <body className={`${hindSiliguri.className} min-h-screen flex flex-col bg-[#fafcfa] text-[#1d271f] antialiased selection:bg-[#05893e] selection:text-white`}>
         <AuthProvider>
           <Toaster
             position="top-right"
             toastOptions={{
               duration: 3500,
               style: {
-                background: '#0f172a',
-                color: '#f8fafc',
-                borderRadius: '0.75rem',
-                border: '1px solid #334155',
+                background: '#1d271f',
+                color: '#fafcfa',
+                borderRadius: '0.5rem',
+                border: '1px solid #e1e8e1',
                 fontSize: '0.875rem',
                 fontWeight: 500,
               },
               success: {
                 iconTheme: {
-                  primary: '#10b981',
+                  primary: '#05893e',
                   secondary: '#ffffff',
                 },
               },
               error: {
                 iconTheme: {
-                  primary: '#ef4444',
+                  primary: '#d03739',
                   secondary: '#ffffff',
                 },
               },

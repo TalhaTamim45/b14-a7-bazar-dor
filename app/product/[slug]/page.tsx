@@ -1,4 +1,5 @@
-﻿import { Metadata } from 'next';
+import { Metadata } from 'next';
+import { notFound } from 'next/navigation';
 import { getProductByIdOrSlug } from '@/lib/api';
 import ProductDetailView from '@/components/product/ProductDetailView';
 
@@ -27,6 +28,10 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
 export default async function ProductDetailPage({ params }: PageProps) {
   const { slug } = await params;
   const product = await getProductByIdOrSlug(slug);
+
+  if (!product) {
+    notFound();
+  }
 
   return (
     <div className="min-h-[80vh]">

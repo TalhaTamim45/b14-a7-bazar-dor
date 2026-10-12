@@ -1,8 +1,11 @@
-﻿@import "tailwindcss";
+@import "tailwindcss";
 
 :root {
-  --background: #f8fafc;
-  --foreground: #0f172a;
+  --background: #fafcfa;
+  --foreground: #1d271f;
+  --primary: #05893e;
+  --primary-strong: #047f39;
+  --border-color: #e1e8e1;
 }
 
 @theme inline {
@@ -11,9 +14,9 @@
 }
 
 body {
-  background: var(--background);
+  background-color: var(--background);
   color: var(--foreground);
-  font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+  font-family: var(--font-hind-siliguri), 'Hind Siliguri', system-ui, -apple-system, sans-serif;
   scroll-behavior: smooth;
 }
 

@@ -1,4 +1,4 @@
-﻿'use client';
+'use client';
 
 import React, { createContext, useContext, useState, useEffect } from 'react';
 import { authClient, signIn, signUp, signOut, useSession } from '@/lib/auth-client';
@@ -15,6 +15,8 @@ export interface User {
 interface AuthContextType {
   user: User | null;
   isLoading: boolean;
+  login: (email: string, pass: string, callbackUrl?: string) => Promise<boolean>;
+  register: (name: string, email: string, pass: string) => Promise<boolean>;
   loginWithEmail: (email: string, pass: string, callbackUrl?: string) => Promise<boolean>;
   registerWithEmail: (name: string, email: string, pass: string) => Promise<boolean>;
   loginWithSocial: (provider: 'google' | 'github', callbackUrl?: string) => Promise<void>;
@@ -29,7 +31,6 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
   const { data: sessionData, isPending, refetch } = useSession();
   const [localUser, setLocalUser] = useState<User | null>(null);
 
-  // লোকাল স্টোরেজ ও সেশন ডেটা সিঙ্ক করা
   useEffect(() => {
     if (sessionData?.user) {
       setLocalUser({
@@ -39,7 +40,6 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
         image: sessionData.user.image || null,
       });
     } else {
-      // যদি লোকাল ডেমো সেশন থাকে
       const saved = typeof window !== 'undefined' ? localStorage.getItem('bazardor_user') : null;
       if (saved) {
         try {
@@ -53,7 +53,6 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
     }
   }, [sessionData]);
 
-  // ইমেইল ও পাসওয়ার্ড দিয়ে সাইন ইন
   const loginWithEmail = async (email: string, pass: string, callbackUrl: string = '/') => {
     try {
       const res = await signIn.email({
@@ -68,12 +67,16 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
 
       toast.success('সফলভাবে সাইন ইন হয়েছে!');
       if (res.data?.user) {
-        setLocalUser({
+        const u: User = {
           id: res.data.user.id,
           name: res.data.user.name,
           email: res.data.user.email,
           image: res.data.user.image || null,
-        });
+        };
+        setLocalUser(u);
+        if (typeof window !== 'undefined') {
+          localStorage.setItem('bazardor_user', JSON.stringify(u));
+        }
       }
       router.push(callbackUrl);
       return true;
@@ -83,7 +86,6 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
     }
   };
 
-  // নতুন অ্যাকাউন্ট রেজিস্ট্রেশন
   const registerWithEmail = async (name: string, email: string, pass: string) => {
     try {
       const res = await signUp.email({
@@ -106,11 +108,9 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
     }
   };
 
-  // সোশ্যাল সাইন ইন (গুগল / গিটহাব)
   const loginWithSocial = async (provider: 'google' | 'github', callbackUrl: string = '/') => {
     const providerNameBn = provider === 'google' ? 'গুগল' : 'গিটহাব';
     try {
-      // যদি রিয়েল OAuth শংসাপত্র কনফিগার করা থাকে
       const res = await signIn.social({
         provider,
         callbackURL: callbackUrl,
@@ -119,7 +119,6 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
         throw new Error(res.error.message);
       }
     } catch {
-      // ডেমো মোড ফলব্যাক - পরীক্ষকদের টেস্ট করার সুবিধার্থে তাৎক্ষণিক সোশ্যাল লগইন সক্রিয় করা
       const demoUser: User = {
         id: `social_${provider}_${Date.now()}`,
         name: provider === 'google' ? 'রাফি আহমেদ' : 'তানভীর হাসান',
@@ -135,13 +134,10 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
     }
   };
 
-  // সাইন আউট
   const logout = async () => {
     try {
       await signOut();
-    } catch {
-      // সাইলেন্ট এরর
-    }
+    } catch {}
     setLocalUser(null);
     if (typeof window !== 'undefined') {
       localStorage.removeItem('bazardor_user');
@@ -150,7 +146,6 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
     router.push('/');
   };
 
-  // ব্যবহারকারীর নাম আপডেট (Challenge C3)
   const updateName = async (newName: string) => {
     if (!newName.trim()) {
       toast.error('অনুগ্রহ করে একটি বৈধ নাম লিখুন');
@@ -158,14 +153,12 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
     }
 
     try {
-      // BetterAuth ইউজার আপডেট মেথড
       if (authClient.updateUser) {
         await authClient.updateUser({
           name: newName,
         });
       }
 
-      // স্টেট ও লোকালস্টোরেজ আপডেট
       if (localUser) {
         const updated = { ...localUser, name: newName };
         setLocalUser(updated);
@@ -178,7 +171,6 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
       router.push('/profile');
       return true;
     } catch {
-      // ফ্যালব্যাক হিসেবে লোকাল ইউজার আপডেট
       if (localUser) {
         const updated = { ...localUser, name: newName };
         setLocalUser(updated);
@@ -199,6 +191,8 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
       value={{
         user: localUser,
         isLoading: isPending && !localUser,
+        login: loginWithEmail,
+        register: registerWithEmail,
         loginWithEmail,
         registerWithEmail,
         loginWithSocial,

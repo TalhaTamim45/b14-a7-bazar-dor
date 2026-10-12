@@ -1,4 +1,4 @@
-﻿'use client';
+'use client';
 
 import React, { useState, useMemo } from 'react';
 import { Product, Category } from '@/types';
@@ -48,17 +48,17 @@ export default function ProductGridSection({
   }, [products, selectedCategory, searchQuery]);
 
   return (
-    <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10 space-y-14">
+    <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10 space-y-12">
       {/* ========================================================
           সেকশন এ: আজ দাম বেড়েছে ▲
          ======================================================== */}
-      <section className="space-y-5">
-        <div className="border-b border-slate-200 pb-3">
-          <h2 className="text-xl sm:text-2xl font-black text-slate-900 flex items-center gap-2">
+      <section className="space-y-4">
+        <div className="border-b border-[#e1e8e1] pb-3">
+          <h2 className="text-xl sm:text-2xl font-bold text-[#1d271f] flex items-center gap-2">
             <span className="text-[#05893e]">▲</span>
             <span>আজ দাম বেড়েছে</span>
           </h2>
-          <p className="text-xs sm:text-sm text-slate-500 mt-1">
+          <p className="text-xs sm:text-sm text-[#1d271f]/60 mt-0.5">
             গতকালের তুলনায় যেসব পণ্যের বাজারমূল্য বৃদ্ধি পেয়েছে
           </p>
         </div>
@@ -73,13 +73,13 @@ export default function ProductGridSection({
       {/* ========================================================
           সেকশন বি: আজ দাম কমেছে ▼
          ======================================================== */}
-      <section className="space-y-5">
-        <div className="border-b border-slate-200 pb-3">
-          <h2 className="text-xl sm:text-2xl font-black text-slate-900 flex items-center gap-2">
-            <span className="text-rose-600">▼</span>
+      <section className="space-y-4">
+        <div className="border-b border-[#e1e8e1] pb-3">
+          <h2 className="text-xl sm:text-2xl font-bold text-[#1d271f] flex items-center gap-2">
+            <span className="text-[#d03739]">▼</span>
             <span>আজ দাম কমেছে</span>
           </h2>
-          <p className="text-xs sm:text-sm text-slate-500 mt-1">
+          <p className="text-xs sm:text-sm text-[#1d271f]/60 mt-0.5">
             গতকালের তুলনায় যেসব পণ্যের বাজারমূল্য হ্রাস পেয়েছে
           </p>
         </div>
@@ -94,26 +94,26 @@ export default function ProductGridSection({
       {/* ========================================================
           সেকশন সি: সব পণ্য
          ======================================================== */}
-      <section id="সব-পণ্য" className="space-y-6 scroll-mt-20 pt-4">
-        <div className="flex flex-col md:flex-row md:items-end justify-between gap-4 border-b border-slate-200 pb-4">
+      <section id="সব-পণ্য" className="space-y-5 scroll-mt-20 pt-2">
+        <div className="flex flex-col md:flex-row md:items-end justify-between gap-4 border-b border-[#e1e8e1] pb-3">
           <div>
-            <h2 className="text-2xl sm:text-3xl font-black text-slate-900">
+            <h2 className="text-2xl sm:text-3xl font-bold text-[#1d271f]">
               সব পণ্য
             </h2>
-            <p className="text-xs sm:text-sm text-slate-500 mt-1">
+            <p className="text-xs sm:text-sm text-[#1d271f]/60 mt-0.5">
               মোট {toBengaliNumber(filteredProducts.length)}টি পণ্য দেখানো হচ্ছে
             </p>
           </div>
 
           {/* সার্চ বক্স */}
-          <div className="relative w-full md:w-72">
-            <Search className="w-4 h-4 text-slate-400 absolute left-3 top-1/2 -translate-y-1/2" />
+          <div className="relative w-full md:w-64">
+            <Search className="w-4 h-4 text-[#1d271f]/40 absolute left-3 top-1/2 -translate-y-1/2" />
             <input
               type="text"
               placeholder="পণ্য খুঁজুন..."
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
-              className="w-full pl-9 pr-3 py-2 text-xs sm:text-sm rounded-lg border border-slate-200 bg-white text-slate-900 focus:outline-none focus:border-[#05893e]"
+              className="w-full pl-9 pr-3 py-2 text-xs sm:text-sm rounded-lg border border-[#e1e8e1] bg-white text-[#1d271f] focus:outline-none focus:border-[#05893e]"
             />
           </div>
         </div>
@@ -122,10 +122,10 @@ export default function ProductGridSection({
         <div className="flex items-center space-x-2 overflow-x-auto pb-1 no-scrollbar">
           <button
             onClick={() => setSelectedCategory('all')}
-            className={`px-3.5 py-1.5 rounded-full text-xs font-semibold transition-colors shrink-0 ${
+            className={`px-3.5 py-1.5 rounded-lg text-xs font-semibold transition-colors shrink-0 ${
               selectedCategory === 'all'
                 ? 'bg-[#05893e] text-white'
-                : 'bg-white text-slate-700 border border-slate-200 hover:bg-slate-50'
+                : 'bg-white text-[#1d271f] border border-[#e1e8e1] hover:bg-[#fafcfa]'
             }`}
           >
             সব ({toBengaliNumber(products.length)})
@@ -134,10 +134,10 @@ export default function ProductGridSection({
             <button
               key={cat.id}
               onClick={() => setSelectedCategory(cat.slug)}
-              className={`flex items-center space-x-1.5 px-3.5 py-1.5 rounded-full text-xs font-semibold transition-colors shrink-0 ${
+              className={`flex items-center space-x-1.5 px-3.5 py-1.5 rounded-lg text-xs font-medium transition-colors shrink-0 ${
                 selectedCategory === cat.slug
                   ? 'bg-[#05893e] text-white'
-                  : 'bg-white text-slate-700 border border-slate-200 hover:bg-slate-50'
+                  : 'bg-white text-[#1d271f] border border-[#e1e8e1] hover:bg-[#fafcfa]'
               }`}
             >
               <span>{cat.icon}</span>
@@ -154,8 +154,8 @@ export default function ProductGridSection({
             ))}
           </div>
         ) : (
-          <div className="text-center py-12 bg-white rounded-xl border border-slate-200 p-6 space-y-2">
-            <p className="text-sm text-slate-500">কোনো পণ্য পাওয়া যায়নি</p>
+          <div className="text-center py-12 bg-white rounded-xl border border-[#e1e8e1] p-6 space-y-2">
+            <p className="text-sm text-[#1d271f]/60">কোনো পণ্য পাওয়া যায়নি</p>
           </div>
         )}
       </section>
