@@ -55,7 +55,7 @@ export default function UpdateProfilePage() {
       <div>
         <Link
           href="/profile"
-          className="inline-flex items-center space-x-1.5 text-xs sm:text-sm font-semibold text-slate-500 hover:text-emerald-600 transition-colors"
+          className="inline-flex items-center space-x-1.5 text-xs sm:text-sm font-semibold text-slate-500 hover:text-[#05893e] transition-colors"
         >
           <ArrowLeft className="w-4 h-4" />
           <span>প্রোফাইলে ফিরে যান</span>
@@ -63,7 +63,7 @@ export default function UpdateProfilePage() {
       </div>
 
       {/* আপডেট ফরম কার্ড (C3 Challenge) */}
-      <div className="bg-white rounded-3xl border border-slate-200/80 p-8 sm:p-10 shadow-lg space-y-6">
+      <div className="bg-white rounded-3xl border border-slate-200/80 p-8 sm:p-10 shadow-xs space-y-6">
         <div className="space-y-1">
           <div className="inline-flex items-center space-x-1.5 text-xs font-bold text-emerald-800 bg-emerald-50 px-2.5 py-1 rounded-full border border-emerald-200 mb-2">
             <Sparkles className="w-3.5 h-3.5" />

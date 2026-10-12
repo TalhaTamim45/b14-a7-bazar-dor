@@ -50,7 +50,7 @@ export default function ProfilePage() {
       </div>
 
       {/* প্রোফাইল মূল কার্ড */}
-      <div className="bg-white rounded-3xl border border-slate-200/80 p-6 sm:p-10 shadow-sm relative overflow-hidden space-y-8">
+      <div className="bg-white rounded-3xl border border-slate-200/80 p-6 sm:p-10 shadow-xs relative overflow-hidden space-y-8">
         <div className="flex flex-col sm:flex-row items-center sm:items-start justify-between gap-6 border-b border-slate-100 pb-8">
           <div className="flex flex-col sm:flex-row items-center sm:items-start space-y-4 sm:space-y-0 sm:space-x-6 text-center sm:text-left">
             {/* অ্যাভাটার */}
@@ -136,7 +136,7 @@ export default function ProfilePage() {
         <div className="pt-4 flex items-center justify-between border-t border-slate-100">
           <Link
             href="/"
-            className="text-sm font-bold text-emerald-600 hover:text-emerald-700 flex items-center space-x-1"
+            className="text-sm font-bold text-[#05893e] hover:text-emerald-700 flex items-center space-x-1"
           >
             <span>বাজারে ফিরে যান</span>
             <ArrowRight className="w-4 h-4" />

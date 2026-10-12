@@ -55,7 +55,7 @@ function SignUpContent() {
   return (
     <div className="min-h-[80vh] flex items-center justify-center px-4 py-12">
       <div className="w-full max-w-md">
-        <div className="bg-white rounded-3xl border border-slate-200/80 p-8 sm:p-10 shadow-xl space-y-7">
+        <div className="bg-white rounded-3xl border border-slate-200/80 p-8 sm:p-10 shadow-xs space-y-7">
           {/* হেডার */}
           <div className="text-center space-y-2">
             <div className="w-14 h-14 rounded-2xl bg-emerald-50 text-emerald-600 flex items-center justify-center mx-auto text-2xl border border-emerald-100 shadow-inner">
@@ -206,7 +206,7 @@ function SignUpContent() {
               ইতিমধ্যে অ্যাকাউন্ট আছে?{' '}
               <Link
                 href="/signin"
-                className="font-bold text-emerald-600 hover:text-emerald-700 hover:underline"
+                className="font-bold text-[#05893e] hover:text-[#047f39] hover:underline"
               >
                 সাইন ইন করুন
               </Link>
