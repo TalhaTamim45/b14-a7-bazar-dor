@@ -7,8 +7,8 @@
 
 ## 🌐 লাইভ ও প্রজেক্ট লিংক (Live & Repository)
 
-- **লাইভ ওয়েবসাইট লিংক (Live Link):** [https://bazardor-ph.vercel.app](https://bazardor-ph.vercel.app) *(কিংবা আপনার ডিপ্লয়মেন্ট লিংক)*
-- **গিটহাব রিপোজিটরি (GitHub Repository):** [https://github.com/your-username/b14-a7-bazar-dor](https://github.com/your-username/b14-a7-bazar-dor)
+- **লাইভ ওয়েবসাইট লিংক (Live Link):** [https://asmnt7.vercel.app](https://asmnt7.vercel.app) *(কিংবা আপনার ডিপ্লয়মেন্ট লিংক)*
+- **গিটহাব রিপোজিটরি (GitHub Repository):** [https://github.com/TalhaTamim45/b14-a7-bazar-dor](https://github.com/TalhaTamim45/b14-a7-bazar-dor)
 
 ---
 
@@ -101,7 +101,7 @@
 
 ১. **রিপোজিটরি ক্লোন করুন:**
    ```bash
-   git clone https://github.com/your-username/b14-a7-bazar-dor.git
+   git clone https://github.com/TalhaTamim45/b14-a7-bazar-dor.git
    cd b14-a7-bazar-dor
    ```
 
