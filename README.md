@@ -1,36 +1,142 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+﻿# 🛒 বাজার দর (BazarDor) — নিত্যপ্রয়োজনীয় পণ্যের বাজার দর ট্র্যাকিং
 
-## Getting Started
+> **Programming Hero Batch 14 — Assignment 07**  
+> একটি পূর্ণাঙ্গ বাংলাদেশি নিত্যপ্রয়োজনীয় পণ্যের পাইকারি ও খুচরা বাজার দর মনিটরিং এবং মূল্য পর্যালোচনা ওয়েব অ্যাপ্লিকেশন।
 
-First, run the development server:
+---
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+## 🌐 লাইভ ও প্রজেক্ট লিংক (Live & Repository)
+
+- **লাইভ ওয়েবসাইট লিংক (Live Link):** [https://bazardor-ph.vercel.app](https://bazardor-ph.vercel.app) *(কিংবা আপনার ডিপ্লয়মেন্ট লিংক)*
+- **গিটহাব রিপোজিটরি (GitHub Repository):** [https://github.com/your-username/b14-a7-bazar-dor](https://github.com/your-username/b14-a7-bazar-dor)
+
+---
+
+## 📖 সংক্ষিপ্ত পরিচিতি (Project Overview)
+
+**বাজার দর** হলো একটি আধুনিক এবং ব্যবহারকারী-বান্ধব নিত্যপ্রয়োজনীয় পণ্যের মূল্য ট্র্যাকিং প্ল্যাটফর্ম। এটি প্রতিদিন ঢাকা ও সারা দেশের বিভিন্ন পাইকারি ও খুচরা বাজারের চাল, ডাল, তেল, শাকসবজি, মাছ ও মাংসের সর্বশেষ বাজার দর সংগ্রহ ও প্রদর্শন করে। ব্যবহারকারীরা সহজেই আজকের মূল্য বৃদ্ধি ও দরপতনের তথ্য জানতে পারেন, ক্যাটাগরি অনুযায়ী ফিল্টার করতে পারেন, বিভিন্ন বাজারের তুলনামূলক মূল্য দেখতে পারেন এবং নিরাপদ অ্যাকাউন্টের মাধ্যমে ব্যক্তিগত প্রোফাইল পরিচালনা করতে পারেন।
+
+---
+
+## 🚀 প্রধান ৫টি মূল বৈশিষ্ট্য (Key Features)
+
+1. **📊 লাইভ মূল্য বৃদ্ধি ও দরপতন পর্যবেক্ষণ (Top Risers & Fallers):**
+   - **আজ দাম বেড়েছে ▲**: শীর্ষ ৬টি পণ্য যাদের দাম আজ বৃদ্ধি পেয়েছে।
+   - **আজ দাম কমেছে ▼**: শীর্ষ ৬টি পণ্য যাদের দাম কমে ক্রেতাদের সাশ্রয় হয়েছে।
+   - ন্যাভবারের নিচে মসৃণ ইনফিনিট স্ক্রলিং **মারকুই প্রাইজ টিকার** (Price Ticker Strip)।
+
+2. **🔒 BetterAuth ভিত্তিক সুরক্ষিত অথেন্টিকেশন ও প্রোটেক্টেড রুট (Protected Routes):**
+   - আধুনিক **BetterAuth** ইন্টিগ্রেশন।
+   - ইমেইল/পাসওয়ার্ড দিয়ে সাইন ইন ও সাইন আপ।
+   - গুগল ও গিটহাব সোশ্যাল লগইন সাপোর্ট।
+   - পণ্যের বিস্তারিত পেজ (`/product/[slug]`) এবং প্রোফাইল পেজ সম্পূর্ণরূপে সুরক্ষিত (লগইন ছাড়া প্রবেশে টোস্ট অ্যালার্ট ও সাইন-ইন পেজে স্বয়ংক্রিয় রিডাইরেক্ট)।
+
+3. **🏪 বাজারভিত্তিক বিশদ পরিসংখ্যান ও ফিল্টারিং (Market-wise Price Breakdown):**
+   - প্রতিটি পণ্যের জন্য দেশের প্রধান বাজারগুলোর (কারওয়ান বাজার, মিরপুর গ্রীন মার্কেট, চৌদগ্রাম, সদর বাজার ইত্যাদি) সর্বনিম্ন, সর্বোচ্চ এবং গড় মূল্য প্রদর্শন।
+   - বিভাগ অনুযায়ী (ঢাকা, চট্টগ্রাম, রাজশাহী, সিলেট ইত্যাদি) তাৎক্ষণিক ফিল্টারিং এবং সার্চ সুবিধা।
+
+4. **⚡ সংখ্যাগত সর্টিং ড্রপডাউন (Numeric Sorting with Bengali Numerals - C1 Challenge):**
+   - ক্যাটাগরি পেজে `সাজান: ডিফল্ট`, `দাম: কম থেকে বেশি` এবং `দাম: বেশি থেকে কম` ড্রপডাউন।
+   - বাংলা সংখ্যাযুক্ত ডেটাকে টেক্সটভিত্তিক নয়, বরং নিখুঁত সংখ্যাগত মানে (Numeric Value) সর্ট করার নির্ভরযোগ্য অ্যালগরিদম।
+
+5. **👤 ইউজার প্রোফাইল এবং তথ্য আপডেট সুবিধা (User Information Update - C3 Challenge):**
+   - মাই প্রোফাইল পেজ (`/profile`) থেকে ইউজারের তথ্য পর্যালোচনা।
+   - `/profile/update` রাউটে গিয়ে ইউজারের নাম সফলভাবে আপডেট করার সুবিধা এবং আপডেট শেষে তাৎক্ষণিক টোস্ট নোটিফিকেশন প্রদর্শন।
+
+---
+
+## 🛠️ ব্যবহৃত প্রযুক্তিসমূহ (Technologies Used)
+
+| প্রযুক্তি | ব্যবহারের উদ্দেশ্য |
+|---|---|
+| **Next.js 16 (App Router)** | পূর্ণাঙ্গ ফ্রন্টএন্ড এবং সার্ভার কম্পোনেন্ট আর্কিটেকচার |
+| **React 19** | ইন্টারঅ্যাক্টিভ ইউজার ইন্টারফেস এবং স্টেট ম্যানেজমেন্ট |
+| **BetterAuth** | আধুনিক এবং নিরাপদ ব্যবহারকারী প্রমাণীকরণ (Authentication) |
+| **Tailwind CSS v4** | রেসপন্সিভ এবং নান্দনিক ইউআই ডিজাইন |
+| **TypeScript** | টাইপ সেফটি এবং ক্লিন কোড স্ট্রাকচার |
+| **Better-SQLite3** | নির্ভরযোগ্য লোকাল ডাটাবেজ স্টোরেজ |
+| **Lucide React** | প্রফেশনাল ও আধুনিক আইকন লাইব্রেরি |
+| **React Hot Toast** | মসৃণ ও আকর্ষণীয় টোস্ট নোটিফিকেশন |
+
+---
+
+## 📁 প্রজেক্ট ফোল্ডার স্ট্রাকচার (Folder Structure)
+
+```text
+├── app/
+│   ├── api/
+│   │   └── auth/[...all]/route.ts     # BetterAuth API হ্যান্ডলার
+│   ├── category/[slug]/
+│   │   ├── loading.tsx               # ক্যাটাগরি পেজ স্কেলিটন
+│   │   └── page.tsx                  # ক্যাটাগরি পেজ
+│   ├── product/[slug]/
+│   │   ├── loading.tsx               # প্রোডাক্ট ডিটেইল স্কেলিটন
+│   │   └── page.tsx                  # সুরক্ষিত প্রোডাক্ট ডিটেইল পেজ
+│   ├── profile/
+│   │   ├── page.tsx                  # মাই প্রোফাইল পেজ
+│   │   └── update/page.tsx           # তথ্য আপডেট পেজ (C3)
+│   ├── signin/page.tsx               # সাইন ইন পেজ
+│   ├── signup/page.tsx               # সাইন আপ পেজ
+│   ├── layout.tsx                    # রুট লেআউট (Navbar + Footer + Toaster)
+│   ├── not-found.tsx                 # কাস্টম ৪০৪ পেজ
+│   └── page.tsx                      # হোম পেজ (Hero + Risers + Fallers + All Products)
+├── components/
+│   ├── home/                         # Hero ও ProductGridSection
+│   ├── navbar/                       # Navbar ও PriceTicker
+│   ├── product/                      # ProductCard, CategoryProductList, ProductDetailView
+│   └── ui/                           # Footer ও অন্যান্য সাধারণ কম্পোনেন্ট
+├── lib/
+│   ├── api.ts                        # API ডেটা ফেচিং ও ফ্যালব্যাক সার্ভিস
+│   ├── auth.ts                       # BetterAuth সার্ভার কনফিগারেশন
+│   ├── auth-client.ts                # BetterAuth ক্লায়েন্ট মেথডসমূহ
+│   ├── auth-context.tsx              # রিয়্যাক্ট কনটেক্সট প্রোভাইডার
+│   └── bengali.ts                    # বাংলা সংখ্যা, তারিখ ও একক রূপান্তর হেল্পার
+└── types/
+    └── index.ts                      # টাইপস্ক্রিপ্ট ইন্টারফেস
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+---
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## 💻 লোকাল মেশিনে রান করার নিয়ম (Installation & Setup)
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+১. **রিপোজিটরি ক্লোন করুন:**
+   ```bash
+   git clone https://github.com/your-username/b14-a7-bazar-dor.git
+   cd b14-a7-bazar-dor
+   ```
 
-## Learn More
+২. **প্রয়োজনীয় প্যাকেজসমূহ ইন্সটল করুন:**
+   ```bash
+   npm install
+   ```
 
-To learn more about Next.js, take a look at the following resources:
+৩. **এনভায়রনমেন্ট ভ্যারিয়েবল সেট করুন:**
+   রুট ডিরেক্টরিতে `.env.local` ফাইল তৈরি করুন:
+   ```env
+   BETTER_AUTH_SECRET="your-super-secure-secret-key"
+   BETTER_AUTH_URL="http://localhost:3000"
+   NEXT_PUBLIC_APP_URL="http://localhost:3000"
+   ```
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+৪. **ডাটাবেজ মাইগ্রেশন চালান:**
+   ```bash
+   npx @better-auth/cli migrate -y
+   ```
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+৫. **ডেভেলপমেন্ট সার্ভার চালু করুন:**
+   ```bash
+   npm run dev
+   ```
+   এরপর ব্রাউজারে `http://localhost:3000` লিংকে প্রবেশ করুন।
 
-## Deploy on Vercel
+---
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+## 📱 রেসপন্সিভনেস এবং ব্রাউজার সাপোর্ট
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+- **মোবাইল:** ৩২০px থেকে সম্পূর্ণ অ্যাডাপ্টিভ, মোবাইল মেনু টগল, মসৃণ গ্রিড লেআউট।
+- **ট্যাবলেট:** ২-কলাম গ্রিড ও স্বাচ্ছন্দ্যময় নেভিগেশন।
+- **ডেস্কটপ:** ৩ থেকে ৪ কলাম গ্রিড, মেগা মারকুই টিকার এবং বিস্তারিত পরিসংখ্যান টেবিল।
+
+---
+
+© ২০২৬ **বাজার দর (BazarDor)** — সর্বস্বত্ব সংরক্ষিত।
